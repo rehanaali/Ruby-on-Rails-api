@@ -1,6 +1,7 @@
 # README
 
-* git clone 
+* git clone https://github.com/rehanaali/Ruby-on-Rails-api.git
+* cd Ruby-on-Rails-api
 * bundle install
 * rake db:create
 * rails db:migrate
@@ -10,6 +11,7 @@
 
 
 * ==>archivage automatique des messages de plus de 3 mois
+
 l'archivage se fait automatique avant de lister les messages 
 (before_action :archiver_message, only: [:index])
 
@@ -25,6 +27,6 @@ dans ce cas id=6 c'est bien l'id de l'utilisateur désormais connecté sur l'app
 
 http://127.0.0.1:3000/api/v1/messages?id=6
 
-* lister les messages visibles par fil de discussion (dans ce cas j'aurais seulement les fils de disscusion regroupant )
+* lister les messages visibles par fil de discussion 
 
 http://127.0.0.1:3000/api/v1/messages?id=6&group=fil
