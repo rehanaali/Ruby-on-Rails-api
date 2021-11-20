@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* git clone 
+* bundle install
+* rake db:create
+* rails db:migrate
+* rails db:seed
+* rails s
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+* ==>archivage automatique des messages de plus de 3 mois
+l'archivage se fait automatique avant de lister les messages 
+(before_action :archiver_message, only: [:index])
 
-* Configuration
 
-* Database creation
+* ==>remplacement automatique des emails et numéro de téléphone contenus dans les messages par le mot « confidentiel »
 
-* Database initialization
+cette action est faite au moment de la création du message
+(before_action :set_message, only: [:create])
 
-* How to run the test suite
+* lister les messages visibles par un destinataire par ordre chronologique
 
-* Services (job queues, cache servers, search engines, etc.)
+dans ce cas id=6 c'est bien l'id de l'utilisateur désormais connecté sur l'application
 
-* Deployment instructions
+http://127.0.0.1:3000/api/v1/messages?id=6
 
-* ...
+* lister les messages visibles par fil de discussion (dans ce cas j'aurais seulement les fils de disscusion regroupant )
+
+http://127.0.0.1:3000/api/v1/messages?id=6&group=fil
