@@ -35,20 +35,35 @@ module MessageService
   #
   def getMessages(groupByFil=false)
 
-    messages=Message.actif(Message::ACTIF).where(receiver_id: params['id']).orderdatedesc()
-
     if(groupByFil)
-      return messages.group("transmitter_id")
+      return getMessageByFilDeDiscussion
     end
 
-    return messages
-
+    return getMessageByDestinataire
   end
 
 
 
 
   private
+
+
+  def getMessageByFilDeDiscussion
+    messages=[]
+
+    ids=Message.select("transmitter_id").group("transmitter_id").actif(Message::ACTIF).where(receiver_id: params['id']).orderdatedesc()
+    ids.map(&:transmitter_id).each do|tid|
+      messages<< Message.actif(Message::ACTIF).where(receiver_id: params['id'],transmitter_id: tid).orderdatedesc()
+    end
+
+    return messages
+  end
+
+
+  def getMessageByDestinataire
+     Message.actif(Message::ACTIF).where(receiver_id: params['id']).orderdatedesc()
+  end
+
 
   def is_a_valid_phone?(phone)
     phone = phone.gsub(/[()-,-._ ]/, '')
