@@ -30,3 +30,7 @@ http://127.0.0.1:3000/api/v1/messages?id=6
 * lister les messages visibles par fil de discussion 
 
 http://127.0.0.1:3000/api/v1/messages?id=6&group=fil
+
+* * TODO
+* Avoir un système d'authentification
+* dockerisation du projet
